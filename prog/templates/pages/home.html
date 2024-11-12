@@ -1,0 +1,43 @@
+{% include "parties/header.html" %} 
+{% load static %}
+
+     <main>
+
+      <div class="container mt-5">
+        <div class="row align-items-center">
+          <div class = "card shadow-sm p-3 mb-5 bg-body rounded">
+            <div class = "card-body row g-0">
+            <!-- Coluna da imagem -->
+             
+            <div class="col-md-4">
+                <img src="{% static 'imagens/garotoHome.png'%}" alt="estudante" class="img-thumbnail" style="width: 20rem; height: 20rem;">
+            </div>
+            
+            <!-- Coluna do texto -->
+            <div class="col-md-6">
+                <h1>Vamos práticar python !</h1>
+                <br>
+                <p>Este é um exemplo de texto que fica ao lado de uma imagem. Com o Bootstrap, você consegue criar esse layout facilmente, adaptando-o a diferentes tamanhos de tela. Esse layout é ideal para exibir informações breves ao lado de uma imagem ilustrativa.</p>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+    <br>
+    <div class="d-grid gap-3 col-4 mx-auto">
+        <a href="/login/" class="btn btn-primary">Logar</a>
+        <a href="/cadastrar/" class="btn btn-primary">Cadastrar</a>
+      </div>
+    
+    
+      
+
+        
+    </main>
+
+    
+
+
+  </body>
+</html>
