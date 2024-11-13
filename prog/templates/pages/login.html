@@ -1,11 +1,33 @@
-{%include "parties/header.html"%}
+{% include "parties/header.html" %}
 
+{% block content %}
 
-<body>
-    
-<h1>REDIRECINAMENTO FUNCIONOU</h1>
+    <div class="container mt-5">
+        <div class="card shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="card-body row g-0">
+                <h2>Login de Usuário</h2>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="id_password" name="senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
+                </form>
+            </div>
+        </div>
+    </div>
 
-
-</body>
-</html>
+{% endblock %}

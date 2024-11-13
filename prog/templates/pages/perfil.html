@@ -1,0 +1,17 @@
+{% include "parties/header.html" %} 
+
+<body>
+    
+    {% if request.session.usuario_nome %}
+    <div class="container">
+        <h1>Bem-vindo, {{ request.session.usuario_nome }}!</h1>
+    </div>
+{% else %}
+    <div class="container">
+        <h1>Você não está logado!</h1>
+    </div>
+{% endif %}
+
+
+</body>
+</html>
