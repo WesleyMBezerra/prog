@@ -25,4 +25,5 @@ urlpatterns = [
     path("cadastrar/", views.cadastrar, name ="cadastrar"),
     path("login/", views.login, name ="login"),
     path("perfil/", views.perfil, name="perfil"),
+    path("basico/", views.basico, name="basico" )
 ]

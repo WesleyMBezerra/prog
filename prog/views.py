@@ -68,3 +68,7 @@ def logout(request):
 def perfil(request):
     
     return render(request, "pages/perfil.html")
+
+def basico(request):
+    
+    return render(request, "pages/basico.html")
