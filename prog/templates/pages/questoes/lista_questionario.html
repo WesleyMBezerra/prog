@@ -1,4 +1,6 @@
+{% include "parties/header.html" %} 
 
+<div class = "container text-center">
 <h2>Questionários</h2>
 <a href="{% url 'novo_questionario' %}" class="btn btn-primary">Criar Novo Questionário</a>
 <ul>
@@ -8,4 +10,5 @@
     </li>
     {% endfor %}
 </ul>
+</div>
 

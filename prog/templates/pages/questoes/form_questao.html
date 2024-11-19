@@ -1,3 +1,5 @@
+{% include "parties/header.html" %} 
+
 <h2>{% if object %}Editar{% else %}Nova{% endif %} Questão</h2>
 <form method="post">
     {% csrf_token %}

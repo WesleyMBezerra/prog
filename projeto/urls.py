@@ -27,6 +27,7 @@ urlpatterns = [
     path("exercicios/", views.exercicio, name="exercicios"),
     path("cadastrar/", views.cadastrar, name ="cadastrar"),
     path("login/", views.login, name ="login"),
+    path('logout/', views.logout, name='logout'),
     path("perfil/", views.perfil, name="perfil"),
     path("basico/", views.basico, name="basico" ),
     path('questoes/', views.QuestaoListView.as_view(), name='lista_questoes'),

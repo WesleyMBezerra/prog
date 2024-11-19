@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, render, get_object_or_404
 
 # Create your views here.
 from .forms import UsuarioForm
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password,check_password
 from django.http import HttpResponse
 
 
 from django.contrib import messages
 from .models import Usuario, Questao, Questionario, RespostaUsuario
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth import logout 
 
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
@@ -70,6 +70,7 @@ def login(request):
 
 def logout(request):
 
+    logout(request)
     return redirect('login')  # Redireciona para a página de login após o logout
 
 

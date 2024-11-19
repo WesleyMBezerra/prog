@@ -143,5 +143,5 @@ AUTHENTICATION_BACKENDS = [
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Armazena sessões no banco de dados
 SESSION_COOKIE_NAME = 'sessionid'  # Nome do cookie de sessão
 SESSION_COOKIE_HTTPONLY = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
