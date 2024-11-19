@@ -133,4 +133,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'perfil'  # Nome da URL da página principal
 LOGOUT_REDIRECT_URL = 'login'
 
+MEDIA_URL = '/imagens/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'imagens')
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Armazena sessões no banco de dados
+SESSION_COOKIE_NAME = 'sessionid'  # Nome do cookie de sessão
+SESSION_COOKIE_HTTPONLY = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 

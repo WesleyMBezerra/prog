@@ -1,9 +1,52 @@
 {% include "parties/header.html" %} 
+{% load static %}
 
 <body>
+    {% if user.email in admin_emails %}
+    <h1>Testando o limitador<h1>
+    {% endif %}
+    <!--<div class ="container text-center mt-5"> -->
+    <h1 class = "text-center mt-5">_Questões para iniciantes_<br>Váriaveis</h1>
 
-    <h1>Testando conexão</h1>
+        <div class="card mx-auto" style="width: 40rem; ">
+            <img src="{% static 'imagens/questao1.png'%}" class="card-img" alt="questao1"> 
+            <div class="card-body">
+                <h4 class="card-title">Qual será a saída de print: </h4>    
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    ERROR 404
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                    variavel
+                    </label>
+                </div>    
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                    "Hello World"
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                    4 * 5
+                    </label>
+                </div>     
+                <button type="button" class="btn btn-primary">Confirmar</button>
 
-    
+                <button type="button" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Variável é o nome utilizado para definir um ou mais valores que são manipulados pelos programas durante a sua operação.">
+                Dica!
+                  </button>
+            </div>
+        </div>
+        </div>
+    </div>
+   
+   
+        
 
 </body>

@@ -1,0 +1,8 @@
+<h2>Deletar Questão</h2>
+<p>Tem certeza que deseja deletar a questão: "{{ object.enunciado }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+    <a href="{% url 'lista_questoes' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+

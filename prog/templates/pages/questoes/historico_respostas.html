@@ -1,0 +1,28 @@
+<h2>Histórico de Respostas</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Questionário</th>
+            <th>Questão</th>
+            <th>Sua Resposta</th>
+            <th>Correta?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for resposta in respostas %}
+        <tr>
+            <td>{{ resposta.questionario.titulo }}</td>
+            <td>{{ resposta.questao.enunciado }}</td>
+            <td>{{ resposta.resposta }}</td>
+            <td>
+                {% if resposta.correta %}
+                <span class="text-success">Sim</span>
+                {% else %}
+                <span class="text-danger">Não</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

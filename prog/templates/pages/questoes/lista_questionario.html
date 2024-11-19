@@ -1,0 +1,11 @@
+
+<h2>Questionários</h2>
+<a href="{% url 'novo_questionario' %}" class="btn btn-primary">Criar Novo Questionário</a>
+<ul>
+    {% for questionario in questionarios %}
+    <li>
+        <a href="{% url 'detalhe_questionario' questionario.pk %}">{{ questionario.titulo }}</a>
+    </li>
+    {% endfor %}
+</ul>
+

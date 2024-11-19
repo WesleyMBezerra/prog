@@ -1,0 +1,23 @@
+
+
+<h2>Resultado de {{ questionario.titulo }}</h2>
+
+<p>Sua pontuação: {{ pontuacao }} de {{ total_questoes }}</p>
+
+<h3>Detalhes das Respostas:</h3>
+<ul>
+    {% for questao_id, resultado in respostas.items %}
+    <li>
+        <p>Questão {{ questao_id }}: 
+        {% if resultado.correta %}
+            <span class="text-success">Resposta Correta!</span>
+        {% else %}
+            <span class="text-danger">Resposta Incorreta!</span>
+        {% endif %}
+        </p>
+        <p>Sua resposta: {{ resultado.resposta_usuario }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Voltar aos Questionários</a>

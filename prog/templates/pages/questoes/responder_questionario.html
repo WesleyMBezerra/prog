@@ -1,0 +1,45 @@
+<h2>{{ questionario.titulo }}</h2>
+<p>{{ questionario.descricao }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <ul>
+        {% for questao in questionario.questoes.all %}
+        <li>
+            <p>{{ questao.enunciado }}</p>
+            <ul>
+                <li>
+                    <input type="radio" name="questao_{{ questao.id }}" value="A" id="questao_{{ questao.id }}_A">
+                    <label for="questao_{{ questao.id }}_A">{{ questao.alternativa_a }}</label>
+                </li>
+                <li>
+                    <input type="radio" name="questao_{{ questao.id }}" value="B" id="questao_{{ questao.id }}_B">
+                    <label for="questao_{{ questao.id }}_B">{{ questao.alternativa_b }}</label>
+                </li>
+                <li>
+                    <input type="radio" name="questao_{{ questao.id }}" value="C" id="questao_{{ questao.id }}_C">
+                    <label for="questao_{{ questao.id }}_C">{{ questao.alternativa_c }}</label>
+                </li>
+                <li>
+                    <input type="radio" name="questao_{{ questao.id }}" value="D" id="questao_{{ questao.id }}_D">
+                    <label for="questao_{{ questao.id }}_D">{{ questao.alternativa_d }}</label>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    <button type="submit" class="btn btn-primary">Enviar Respostas</button>
+</form>
+
+<h2>Resultado de {{ questionario.titulo }}</h2>
+
+<ul>
+    {% for questao_id, resposta in respostas.items %}
+    <li>
+        <p>Questão {{ questao_id }}: Sua resposta foi "{{ resposta }}"</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Voltar aos Questionários</a>
+
