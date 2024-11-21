@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, render, get_object_or_404
 # Create your views here.
 from .forms import UsuarioForm
 from django.contrib.auth.hashers import make_password,check_password
-from django.http import HttpResponse
+from django.http import HttpResponse,  HttpResponseForbidden
 
 
 from django.contrib import messages
@@ -15,6 +15,10 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 
 from .forms import QuestionarioForm
+
+
+from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
+
 
 
 
@@ -101,11 +105,14 @@ class QuestaoListView(ListView):
     context_object_name = 'questoes'
     
 
+
 class QuestaoCreateView(CreateView):
     model = Questao
     fields = ['enunciado','imagem', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 'resposta_correta']
     template_name = 'pages/questoes/form_questao.html'
     success_url = reverse_lazy('lista_questoes')
+
+
 
 class QuestaoUpdateView(UpdateView):
     model = Questao
@@ -137,29 +144,30 @@ class QuestionarioDetailView(DetailView):
     
 
 
-
 class QuestionarioResponderView(TemplateView):
     template_name = 'pages/questoes/responder_questionario.html'
 
     def post(self, request, *args, **kwargs):
         questionario = get_object_or_404(Questionario, pk=self.kwargs['pk'])
-        session_key = request.session.session_key
-        if not session_key:
-            request.session.create()
-            session_key = request.session.session_key
+        
 
         respostas = {}
         pontuacao = 0
 
         for questao in questionario.questoes.all():
             resposta_usuario = request.POST.get(f'questao_{questao.id}')
+            if not resposta_usuario:
+                return render(request, 'pages/questoes/responder_questionario.html', {
+                                'questionario': questionario,
+                                'error_message': "Por favor, selecione uma resposta para todas as questões."
+             })
+
             correta = resposta_usuario == questao.resposta_correta
             if correta:
                 pontuacao += 1
 
             RespostaUsuario.objects.create(
                 usuario=request.user if request.user.is_authenticated else None,
-                session_key=session_key,
                 questionario=questionario,
                 questao=questao,
                 resposta=resposta_usuario,

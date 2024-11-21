@@ -40,4 +40,7 @@ urlpatterns = [
     path('questionarios/<int:pk>/responder/', views.QuestionarioResponderView.as_view(), name='responder_questionario'),
     path('historico/', views.HistoricoRespostasView.as_view(), name='historico_respostas'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

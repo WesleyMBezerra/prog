@@ -2,7 +2,9 @@
 
 <div class = "container text-center">
 <h2>Lista de Questões</h2>
+
 <a href="{% url 'nova_questao' %}" class="btn btn-primary">Nova Questão</a>
+
     <ul>{% if questao.imagem %}
         <img src="{{ questao.imagem.url }}" alt="Imagem da questão" style="max-width: 300px;">
     {% endif %}

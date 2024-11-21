@@ -4,6 +4,9 @@ from django.contrib.auth.models import AbstractUser, User
 
 from django.conf import settings
 
+from django.utils.timezone import now
+from datetime import timedelta
+
 # Create your models here.
 
 class Usuario(models.Model):
@@ -16,7 +19,7 @@ class Usuario(models.Model):
     
 class Questao(models.Model):
     enunciado = models.TextField()
-    imagem = models.ImageField(upload_to='questoes_imagens/', blank=True, null=True)
+    imagem = models.ImageField(upload_to='static/imagens/imagens_questoes', blank=True, null=True)
     alternativa_a = models.CharField(max_length=255)
     alternativa_b = models.CharField(max_length=255)
     alternativa_c = models.CharField(max_length=255)

@@ -1,12 +1,16 @@
 {% include "parties/header.html" %} 
+<div class="card text-center">
+    <div class="card-body ">
+        <h2>{{ questionario.titulo }}</h2>
+        <p>{{ questionario.descricao }}</p>
+        <h3>Questões:</h3>
+        <ul>
+            {% for questao in questionario.questoes.all %}
+            <li>{{ questao.enunciado }}</li>
+            {% endfor %}
+        </ul>
 
-<h2>{{ questionario.titulo }}</h2>
-<p>{{ questionario.descricao }}</p>
-<h3>Questões:</h3>
-<ul>
-    {% for questao in questionario.questoes.all %}
-    <li>{{ questao.enunciado }}</li>
-    {% endfor %}
-</ul>
+        <a href="{% url 'responder_questionario' questionario.pk %}" class="btn btn-primary">Responder</a> 
 
-<a href="{% url 'responder_questionario' questionario.pk %}" class="btn btn-primary">Responder</a> 
+    </div>
+</div>

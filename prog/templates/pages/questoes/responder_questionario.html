@@ -9,21 +9,24 @@
         {% for questao in questionario.questoes.all %}
         <li>
             <p>{{ questao.enunciado }}</p>
+            {% if questionario.imagem %}
+            <img src="{{ questao.imagem.url }}" alt="{{ questionario.titulo }}">
+            {% endif %}
             <ul>
                 <li>
-                    <input type="radio" name="questao_{{ questao.id }}" value="A" id="questao_{{ questao.id }}_A">
+                    <input type="radio" name="questao_{{ questao.id }}" value="A" id="questao_{{ questao.id }}_A" required>
                     <label for="questao_{{ questao.id }}_A">{{ questao.alternativa_a }}</label>
                 </li>
                 <li>
-                    <input type="radio" name="questao_{{ questao.id }}" value="B" id="questao_{{ questao.id }}_B">
+                    <input type="radio" name="questao_{{ questao.id }}" value="B" id="questao_{{ questao.id }}_B" required>
                     <label for="questao_{{ questao.id }}_B">{{ questao.alternativa_b }}</label>
                 </li>
                 <li>
-                    <input type="radio" name="questao_{{ questao.id }}" value="C" id="questao_{{ questao.id }}_C">
+                    <input type="radio" name="questao_{{ questao.id }}" value="C" id="questao_{{ questao.id }}_C" required>
                     <label for="questao_{{ questao.id }}_C">{{ questao.alternativa_c }}</label>
                 </li>
                 <li>
-                    <input type="radio" name="questao_{{ questao.id }}" value="D" id="questao_{{ questao.id }}_D">
+                    <input type="radio" name="questao_{{ questao.id }}" value="D" id="questao_{{ questao.id }}_D" required>
                     <label for="questao_{{ questao.id }}_D">{{ questao.alternativa_d }}</label>
                 </li>
             </ul>
