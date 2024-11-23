@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, User
 
 from django.conf import settings
 
+
 from django.utils.timezone import now
 from datetime import timedelta
 
@@ -34,6 +35,13 @@ class Questionario(models.Model):
     titulo = models.CharField(max_length=255)
     descricao = models.TextField(blank=True, null=True)
     questoes = models.ManyToManyField('Questao', related_name='questionarios')
+    prazo_disponibilidade = models.DateTimeField(null=True, blank = True)
+    
+    def disponivel(self):
+        #verifica o prazo
+        if self.prazo_disponibilidade:
+            return self.prazo_disponibilidade > now()
+        return True
 
     def __str__(self):
         return self.titulo

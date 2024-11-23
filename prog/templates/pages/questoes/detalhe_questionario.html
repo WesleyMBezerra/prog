@@ -3,6 +3,12 @@
     <div class="card-body ">
         <h2>{{ questionario.titulo }}</h2>
         <p>{{ questionario.descricao }}</p>
+        
+        {% if questionario.prazo_disponibilidade %}
+            <p><strong>Disponível até:</strong> {{ questionario.prazo_disponibilidade|date:"d/m/Y H:i" }}</p>
+        {% else %}
+            <p><strong>Disponibilidade:</strong> Sem limite de prazo.</p>
+        {% endif %}
         <h3>Questões:</h3>
         <ul>
             {% for questao in questionario.questoes.all %}

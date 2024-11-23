@@ -23,4 +23,5 @@ class QuestionarioForm(forms.ModelForm):
 
     class Meta:
         model = Questionario
-        fields = ['titulo', 'descricao', 'questoes']
+        fields = ['titulo', 'descricao', 'questoes', "prazo_disponibilidade"]
+        widgets = {'prazo_disponibilidade':forms.DateTimeInput(attrs={'type':'datetime-local'}),}

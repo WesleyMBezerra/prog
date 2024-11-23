@@ -8,6 +8,10 @@
 <ul>
     {% for questionario in questionarios %}
     <li>
+        {{ questionario.titulo }}
+        {% if not questionario.disponivel %}
+            <span class="text-danger">(Expirado)</span>
+        {% endif %}
         <a href="{% url 'detalhe_questionario' questionario.pk %}">{{ questionario.titulo }}</a>
     </li>
     {% endfor %}

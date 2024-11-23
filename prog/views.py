@@ -15,6 +15,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 
 from .forms import QuestionarioForm
+from django.utils.timezone import now
 
 
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
@@ -151,6 +152,11 @@ class QuestionarioResponderView(TemplateView):
         questionario = get_object_or_404(Questionario, pk=self.kwargs['pk'])
         
 
+
+        if hasattr(questionario, 'disponivel') and not questionario.disponivel():
+            return HttpResponseForbidden("Este questionário não está mais disponível.")
+
+        
         respostas = {}
         pontuacao = 0
 
