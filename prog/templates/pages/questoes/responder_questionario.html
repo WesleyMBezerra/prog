@@ -1,3 +1,4 @@
+
 {% include "parties/header.html" %} 
 
 <h2>{{ questionario.titulo }}</h2>
@@ -9,8 +10,10 @@
         {% for questao in questionario.questoes.all %}
         <li>
             <p>{{ questao.enunciado }}</p>
-            {% if questionario.imagem %}
-            <img src="{{ questao.imagem.url }}" alt="{{ questionario.titulo }}">
+            {% if questao.imagem %}
+            <img src="{{questao.imagem.url}}" alt="{{ questionario.titulo }}">
+            {%else%}
+                <p>Sem imagem disponível.</p>
             {% endif %}
             <ul>
                 <li>
