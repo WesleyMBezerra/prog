@@ -1,0 +1,11 @@
+{% include "parties/header.html" %} 
+
+
+<h2>Excluir Questionário</h2>
+<p>Você tem certeza de que deseja excluir o questionário <strong>{{ object.titulo }}</strong>?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Cancelar</a>
+</form>

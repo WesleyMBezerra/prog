@@ -13,6 +13,7 @@
             <span class="text-danger">(Expirado)</span>
         {% endif %}
         <a href="{% url 'detalhe_questionario' questionario.pk %}">{{ questionario.titulo }}</a>
+        <a href="{% url 'excluir_questionario' questionario.id %}" class="text-danger">Excluir</a>
     </li>
     {% endfor %}
 </ul>

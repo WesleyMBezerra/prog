@@ -204,4 +204,7 @@ class HistoricoRespostasView(ListView):
         return RespostaUsuario.objects.filter(usuario=self.request.user).order_by('-id')
 
 
-
+class QuestionarioDeleteView(DeleteView):
+    model = Questionario
+    template_name = 'pages/questoes/confirmar_exclusao.html'
+    success_url = reverse_lazy('lista_questionarios')

@@ -39,7 +39,7 @@ urlpatterns = [
     path('questionarios/<int:pk>/', views.QuestionarioDetailView.as_view(), name='detalhe_questionario'),
     path('questionarios/<int:pk>/responder/', views.QuestionarioResponderView.as_view(), name='responder_questionario'),
     path('historico/', views.HistoricoRespostasView.as_view(), name='historico_respostas'),
-
+     path('questionarios/<int:pk>/excluir/', views.QuestionarioDeleteView.as_view(), name='excluir_questionario'),
 ]
 
 if settings.DEBUG:
