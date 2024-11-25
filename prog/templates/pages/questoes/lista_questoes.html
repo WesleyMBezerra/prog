@@ -2,8 +2,11 @@
 
 <div class = "container text-center">
 <h2>Lista de Questões</h2>
-
+<br>
 <a href="{% url 'nova_questao' %}" class="btn btn-primary">Nova Questão</a>
+
+</div>
+{% comment %} 
 
     <ul>{% if 'questao.imagem' %}
         <img src="{{questao.imagem.url}}" alt="Imagem da questão" style="max-width: 300px;">
@@ -11,11 +14,40 @@
     <p>{{ questao.enunciado }}</p>
 
     {% for questao in questoes %}
+    
     <li>
         {{ questao.enunciado }}
         <a href="{% url 'editar_questao' questao.pk %}">Editar</a>
         <a href="{% url 'deletar_questao' questao.pk %}">Deletar</a>
     </li>
     {% endfor %}
-</ul>
+</ul> {% endcomment %}
+
+
+<div class="container mt-4">
+
+    <div class="row">
+        <p>{{ questao.enunciado }}</p>
+        {% for questao in questoes %}
+        <div class="col-md-4 ">
+            <div class="card mb-4 shadow-sm">
+                {% if questao.imagem %}
+                <img src="{{ questao.imagem.url }}" class="card-img-top" alt="Imagem da questão">
+                {% endif %}
+                <div class="card-body ">
+                    <h5 class="card-title">{{ questao.titulo }}</h5>
+                    <p class="card-text ">
+                        {{ questao.enunciado|truncatechars:100 }}
+                    </p>
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'editar_questao' questao.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'deletar_questao' questao.pk %}" class="btn btn-danger btn-sm">Deletar</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+

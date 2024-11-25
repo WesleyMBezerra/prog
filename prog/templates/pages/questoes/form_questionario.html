@@ -1,8 +1,11 @@
 {% include "parties/header.html" %} 
 
+<div class = 'text-center'>
 <h2>Criar Questionário</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Cancelar</a>
 </form>
+</div>

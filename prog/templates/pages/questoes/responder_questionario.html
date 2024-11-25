@@ -1,6 +1,8 @@
 
 {% include "parties/header.html" %} 
 
+
+{% comment %}
 <h2>{{ questionario.titulo }}</h2>
 <p>{{ questionario.descricao }}</p>
 
@@ -39,7 +41,7 @@
     <button type="submit" class="btn btn-primary">Enviar Respostas</button>
 </form>
 
-<h2>Resultado de {{ questionario.titulo }}</h2>
+ <h2>Resultado de {{ questionario.titulo }}</h2>
 
 <ul>
     {% for questao_id, resposta in respostas.items %}
@@ -47,7 +49,46 @@
         <p>Questão {{ questao_id }}: Sua resposta foi "{{ resposta }}"</p>
     </li>
     {% endfor %}
-</ul>
+</ul> {% endcomment %}
 
-<a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Voltar aos Questionários</a>
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">{{ questionario.titulo }}</h2>
+    <p class="text-muted text-center">{{ questionario.descricao }}</p>
+
+    <form method="post" class="p-4 border rounded bg-light shadow-sm">
+        {% csrf_token %}
+        {% for questao in questionario.questoes.all %}
+        <div class="mb-4">
+            <h5 class="mb-3">Questão {{ forloop.counter }}</h5>
+            <p>{{ questao.enunciado }}</p>
+            {% if questao.imagem %}
+            <img src="{{ questao.imagem.url }}" class="img-fluid rounded mb-3" alt="Imagem da questão">
+            {% endif %}
+            <div>
+                <div class="form-check">
+                    <input type="radio" name="questao_{{ questao.id }}" id="questao_{{ questao.id }}_A" value="A" class="form-check-input" required>
+                    <label class="form-check-label" for="questao_{{ questao.id }}_A">{{ questao.alternativa_a }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="questao_{{ questao.id }}" id="questao_{{ questao.id }}_B" value="B" class="form-check-input" required>
+                    <label class="form-check-label" for="questao_{{ questao.id }}_B">{{ questao.alternativa_b }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="questao_{{ questao.id }}" id="questao_{{ questao.id }}_C" value="C" class="form-check-input" required>
+                    <label class="form-check-label" for="questao_{{ questao.id }}_C">{{ questao.alternativa_c }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="questao_{{ questao.id }}" id="questao_{{ questao.id }}_D" value="D" class="form-check-input" required>
+                    <label class="form-check-label" for="questao_{{ questao.id }}_D">{{ questao.alternativa_d }}</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Enviar Respostas</button>
+        </div>
+    </form>
+</div>
 

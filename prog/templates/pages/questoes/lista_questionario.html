@@ -5,7 +5,7 @@
 
 <a href="{% url 'novo_questionario' %}" class="btn btn-primary">Criar Novo Questionário</a>
 
-<ul>
+{% comment %} <ul>
     {% for questionario in questionarios %}
     <li>
         {{ questionario.titulo }}
@@ -17,7 +17,33 @@
     </li>
     {% endfor %}
 </ul>
-</div>
+</div> {% endcomment %}
 
+<div class="container mt-4">
+    <h2>Lista de Questionários</h2>
+    <div class="row">
+        {% for questionario in questionarios %}
+        <div class="col-md-4 ">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ questionario.titulo }}</h5>
+                    <p class="card-text ">
+                        {{ questionario.descricao|truncatechars:100 }}
+                    </p>
+                    {% if not questionario.disponivel %}
+                        <span class="badge bg-danger">Expirado</span>
+                    {% else %}
+                        <span class="badge bg-success">Disponível</span>
+                    {% endif %}
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'detalhe_questionario' questionario.id %}" class="btn btn-primary btn-sm">Responder</a>
+                        <a href="{% url 'excluir_questionario' questionario.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 

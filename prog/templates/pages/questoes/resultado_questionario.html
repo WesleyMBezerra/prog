@@ -1,6 +1,6 @@
 {% include "parties/header.html" %}
 
-<h2>Resultado de {{ questionario.titulo }}</h2>
+{% comment %} <h2>Resultado de {{ questionario.titulo }}</h2>
 
 <p>Sua pontuação: {{ pontuacao }} de {{ total_questoes }}</p>
 
@@ -18,6 +18,40 @@
         <p>Sua resposta: {{ resultado.resposta_usuario }}</p>
     </li>
     {% endfor %}
-</ul>
+</ul> 
 
 <a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Voltar aos Questionários</a>
+
+{% endcomment %}
+
+<div class="container mt-4">
+    <h2>Resultado de {{ questionario.titulo }}</h2>
+    <p class="lead">Sua pontuação: <strong>{{ pontuacao }}</strong> de {{ total_questoes }}</p>
+
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Questão</th>
+                <th>Sua Resposta</th>
+                <th>Correta?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for questao_id, resultado in respostas.items %}
+            <tr>
+                <td>{{ questao_id }}</td>
+                <td>{{ resultado.resposta_usuario }}</td>
+                <td>
+                    {% if resultado.correta %}
+                        <span class="text-success">✔</span>
+                    {% else %}
+                        <span class="text-danger">✘</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Voltar</a>
+</div>
+
