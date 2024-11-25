@@ -26,6 +26,7 @@ class Questao(models.Model):
     alternativa_c = models.CharField(max_length=255)
     alternativa_d = models.CharField(max_length=255)
     resposta_correta = models.CharField(max_length=1, choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')])
+    dica= models.TextField( blank=True, null=True)
 
     def __str__(self):
         return self.enunciado

@@ -88,15 +88,6 @@ def basico(request):
     
     return render(request, "pages/basico.html")
 
-def verificar_resposta(request):
-    if request.method == "POST":
-        resposta = request.POST.get("answer")
-        if resposta == "Hello World":
-            return HttpResponse("Resposta correta!")
-        else:
-            return HttpResponse("Resposta incorreta. Tente novamente!")
-    return redirect("basico")
-
 
 
 
@@ -109,7 +100,7 @@ class QuestaoListView(ListView):
 
 class QuestaoCreateView(CreateView):
     model = Questao
-    fields = ['enunciado','imagem', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 'resposta_correta']
+    fields = ['enunciado','imagem', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d',"dica", 'resposta_correta']
     template_name = 'pages/questoes/form_questao.html'
     success_url = reverse_lazy('lista_questoes')
 
@@ -117,7 +108,7 @@ class QuestaoCreateView(CreateView):
 
 class QuestaoUpdateView(UpdateView):
     model = Questao
-    fields = ['enunciado','imagem', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 'resposta_correta']
+    fields = ['enunciado','imagem', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', "dica",'resposta_correta']
     template_name = 'pages/questoes/form_questao.html'
     success_url = reverse_lazy('lista_questoes')
 

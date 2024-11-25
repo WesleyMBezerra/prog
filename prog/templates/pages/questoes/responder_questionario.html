@@ -59,9 +59,17 @@
     <form method="post" class="p-4 border rounded bg-light shadow-sm">
         {% csrf_token %}
         {% for questao in questionario.questoes.all %}
+
         <div class="mb-4">
             <h5 class="mb-3">Questão {{ forloop.counter }}</h5>
             <p>{{ questao.enunciado }}</p>
+            {% if questao.dica %}
+                <!-- Tooltip -->
+                <span type = "button" class="btn btn-secondary" data-bs-toggle="tooltip" title="{{ questao.dica }}" style="cursor: pointer;">
+                    Dica!
+                    <i class="bi bi-info-circle-fill"></i>
+                </span>
+                {% endif %}
             {% if questao.imagem %}
             <img src="{{ questao.imagem.url }}" class="img-fluid rounded mb-3" alt="Imagem da questão">
             {% endif %}
@@ -92,3 +100,12 @@
     </form>
 </div>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
