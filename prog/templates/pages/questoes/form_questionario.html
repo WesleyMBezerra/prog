@@ -1,5 +1,7 @@
 {% include "parties/header.html" %} 
 
+
+{% comment %} 
 <div class = 'text-center'>
 <h2>Criar Questionário</h2>
 <form method="post">
@@ -8,4 +10,42 @@
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Cancelar</a>
 </form>
+</div> {% endcomment %}
+
+
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Criar Questionário</h2>
+    <form method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow">
+        {% csrf_token %}
+        
+        <!-- Campo Título -->
+        <div class="mb-3">
+            <label for="id_titulo" class="form-label">Título do Questionário</label>
+            {{ form.titulo }}
+        </div>
+        
+        <!-- Campo Descrição -->
+        <div class="mb-3">
+            <label for="id_descricao" class="form-label">Descrição (Opcional)</label>
+            {{ form.descricao }}
+        </div>
+        
+        <!-- Campo Prazo -->
+        <div class="mb-3">
+            <label for="id_prazo_disponibilidade" class="form-label">Prazo de Disponibilidade</label>
+            {{ form.prazo_disponibilidade }}
+        </div>
+        
+        <!-- Campo Questões -->
+        <div class="mb-3">
+            <label for="id_questoes" class="form-label">Selecionar Questões</label>
+            {{ form.questoes }}
+        </div>
+        
+        <!-- Botão de Salvar -->
+        <button type="submit" class="btn btn-success ">Salvar Questionário</button>
+        <a href="{% url 'lista_questionarios' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
 </div>
