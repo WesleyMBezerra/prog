@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'prog'
+    'prog',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +129,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'perfil'  # Nome da URL da página principal
 LOGOUT_REDIRECT_URL = 'login'
 
@@ -139,6 +139,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+
+
 
 
 

@@ -20,6 +20,7 @@ from prog import views
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +28,7 @@ urlpatterns = [
     path("exercicios/", views.exercicio, name="exercicios"),
     path("cadastrar/", views.cadastrar, name ="cadastrar"),
     path("login/", views.login, name ="login"),
-    path('logout/', views.logout, name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path("perfil/", views.perfil, name="perfil"),
     path("basico/", views.basico, name="basico" ),
     path('questoes/', views.QuestaoListView.as_view(), name='lista_questoes'),
@@ -39,7 +40,8 @@ urlpatterns = [
     path('questionarios/<int:pk>/', views.QuestionarioDetailView.as_view(), name='detalhe_questionario'),
     path('questionarios/<int:pk>/responder/', views.QuestionarioResponderView.as_view(), name='responder_questionario'),
     path('historico/', views.HistoricoRespostasView.as_view(), name='historico_respostas'),
-     path('questionarios/<int:pk>/excluir/', views.QuestionarioDeleteView.as_view(), name='excluir_questionario'),
+    path('questionarios/<int:pk>/excluir/', views.QuestionarioDeleteView.as_view(), name='excluir_questionario'),
+    path('questionarios-publicos/', views.lista_questionarios_publica, name='lista_questionarios_publica'),
 ]
 
 if settings.DEBUG:

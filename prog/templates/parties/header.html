@@ -33,12 +33,18 @@
           </a> 
         </h1>
         </div>
-
+        
         <div class="position-absolute end-0 me-3">
           <a href="/perfil/" class="btn btn-primary">
               Perfil
           </a>
       </div>
+      <div class="position-absolute start-0 me-3">        
+        <form method="post" action="{% url 'logout' %}" >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-warning">Logout</button>
+      </form>
+              </div>
         
     </header>
 

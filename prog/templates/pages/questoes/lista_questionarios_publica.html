@@ -1,0 +1,20 @@
+{% include "parties/header.html" %} 
+
+<div class="container mt-4">
+    <h2>Lista de Questionários</h2>
+    <div class="row">
+        {% for questionario in questionarios %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ questionario.titulo }}</h5>
+                    <p class="card-text">{{ questionario.descricao|truncatechars:100 }}</p>
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'detalhe_questionario' questionario.id %}" class="btn btn-primary btn-sm">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

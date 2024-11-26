@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, render, get_object_or_404
 # Create your views here.
 from .forms import UsuarioForm
 from django.contrib.auth.hashers import make_password,check_password
-from django.http import HttpResponse,  HttpResponseForbidden
+from django.http import  HttpResponseForbidden
 
 
 from django.contrib import messages
@@ -15,10 +15,13 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 
 from .forms import QuestionarioForm
-from django.utils.timezone import now
+
+from django.contrib.auth import logout
 
 
-from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
+def lista_questionarios_publica(request):
+    questionarios = Questionario.objects.all()
+    return render(request, 'pages/questoes/lista_questionarios_publica.html', {'questionarios': questionarios})
 
 
 
@@ -76,7 +79,7 @@ def login(request):
 def logout(request):
 
     logout(request)
-    return redirect('login')  # Redireciona para a página de login após o logout
+    return redirect('/login/')  # Redireciona para a página de login após o logout
 
 
 def perfil(request):
@@ -199,3 +202,6 @@ class QuestionarioDeleteView(DeleteView):
     model = Questionario
     template_name = 'pages/questoes/confirmar_exclusao.html'
     success_url = reverse_lazy('lista_questionarios')
+
+
+
